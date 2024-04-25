@@ -23,6 +23,22 @@ const registerUser = async (req, res) => {
 
         await user.save()
 
+        const payload = {
+            user: {
+                id: user.id,
+            },
+        };
+
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+                { expiresIn: 3600 },
+                (err, token) => {
+                    if (err) throw err;
+                    req.session.token = token;
+                    res.json({ token })
+                }
+        )
 
     } catch (error) {
         console.error(error.message)
@@ -43,6 +59,24 @@ const loginUser = async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid Credentials'})
         }
+
+        const payload = {
+            user: {
+                id: user.id,
+            },
+        }
+
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: 3600 },
+            (err, token) => {
+                if (err) throw err;
+                req.session.token = token;
+                res.json({ token })
+            }
+        );
+
     } catch (error) {
         console.error(error.message)
         res.status(500).json({ message: 'Internal Server Error'})
@@ -51,7 +85,15 @@ const loginUser = async (req, res) => {
 
 
 const logoutUser = async (req, res) => {
-
+    req.session.destroy((err) => {
+        if (err) {
+            console.error(err)
+            res.status(500).json({ message: 'Internal Server Error '});
+        } else {
+            res.clearCookie('connect.sid');
+            res.json({ message: 'Logged out successfully' })
+        }
+    })
 }
 
 module.exports = {

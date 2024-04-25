@@ -23,7 +23,15 @@ mongoose.connect(uri)
     console.log(error)
 })
 
-
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: uri,
+        ttl: 24 * 60 * 60,
+    }),
+}));
 
 const authRouter = require('./routes/auth')
 const blogRouter = require('./routes/blog')
