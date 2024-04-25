@@ -7,15 +7,14 @@ const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
 
 
-
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
-mongoose.connect('mongodb://127.0.0.1:27017/bittersweet')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log('MongoDB connected')
 })
@@ -32,4 +31,4 @@ app.use('/api/blog', blogRouter)
 app.use('/api/auth', authRouter)
 
 
-app.listen(PORT,() => {console.log(`Server is listening on port ${PORT}`)})
+app.listen(PORT, () => {console.log(`Server is listening on port ${PORT}`)})

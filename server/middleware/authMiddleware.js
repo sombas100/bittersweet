@@ -9,7 +9,7 @@ const authMiddleware = (req, res, next) => {
     try {
        const decoded = jwt.verify(token, process.env.JWT_SECRET);
        req.user = decoded.user;
-       next()
+       next();
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: 'Internal Server Error' })
