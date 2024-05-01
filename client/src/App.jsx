@@ -4,20 +4,34 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
+import { useState } from 'react';
+import axios from 'axios'
+import { redirect } from 'react-router-dom'
 
 
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   
+  const handleLogout = async () => {
+    try {
+        await axios.get('http://localhost:3000/api/auth/logout');
+        setAuthenticated(false)
+        redirect('/login')
+    } catch (error) {
+        console.error('Logut failed:', error)
+    }
+};
 
   return (
     <Router>
-      <Navbar />
+      <Navbar authenticated={authenticated} handleLogout={handleLogout}/>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login />}/>
+        <Route path='/login' element={<Login setAuthenticated={setAuthenticated}/>}/>
         <Route path='/register' element={<Register />}/>
-        <Route path='/dashboard' element={<Dashboard />}/>  
+        <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  
       </Routes>
     </Router>
   )

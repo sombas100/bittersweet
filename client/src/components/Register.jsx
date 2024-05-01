@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
-const Register = ({ history }) => {
+const Register = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     email: '', 
@@ -16,16 +19,17 @@ const handleChange = e => {
 const handleSubmit = async e => {
   e.preventDefault();
   try {
-    const res = await axios.post('/api/auth/register', {
+    const res = await axios.post('http://localhost:3000/api/auth/register', {
       username,
       email,
       password
     });
     if (res.data.token) {
-      history.push('/dashboard');
+      navigate('/');
     }
+    console.log(res)
   } catch (error) {
-    console.error(error.res.data)
+    console.error('Error during registration', error.response.data)
   }}
   return (
     <div>
@@ -55,7 +59,7 @@ const handleSubmit = async e => {
           <input 
           type='password'
           placeholder='Password'
-          name='Password'
+          name='password'
           value={password}
           onChange={handleChange}
           required

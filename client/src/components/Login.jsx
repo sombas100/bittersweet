@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const Login = ({ history}) => {
+const Login = ({ setAuthenticated }) => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,15 +19,16 @@ const Login = ({ history}) => {
   const handleSubmit = async e => {
     e.preventDefault();
 try {
-  const res = await axios.post('/aoi/auth/login', {
+  const res = await axios.post('http://localhost:3000/api/auth/login', {
     email,
     password,
   });
   if (res.data.token) {
-    history.push('/dashboard');
+    setAuthenticated(true)
+    navigate('/');
   }
 } catch (error) {
-  console.error(error.res.data)
+  console.error(error.message)
 }
 
   }

@@ -6,7 +6,7 @@ const Home = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get('/api/blogs');
+      const res = await axios.get('http://localhost:3000/api/blogs');
       setBlogs(res.data)
     } catch (error) {
       console.error('There was an error fetching the blogs:', error)

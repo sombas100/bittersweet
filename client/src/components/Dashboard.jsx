@@ -4,7 +4,7 @@ import axios from 'axios'
 import BlogPostForm from './BlogPostForm'
 import LogoutButton from './LogoutButton'
 
-const Dashboard = ({ history }) => {
+const Dashboard = () => {
     return (
     <div>
       <h1>Dashboard</h1>
