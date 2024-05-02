@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import LogoutButton from './LogoutButton'
+import { Button } from '@mui/material'
 
 const Navbar = ({ authenticated, handleLogout, isAdmin }) => {
   return (
@@ -29,8 +30,10 @@ const Navbar = ({ authenticated, handleLogout, isAdmin }) => {
             )}
             </ul>
         </div>
-        <div>
-            
+        <div className='create-post-btn'>
+            <Link to='/uploads/new'>
+            <Button variant='outlined'>Create Post</Button>
+            </Link>
         </div>
     </nav>
   )

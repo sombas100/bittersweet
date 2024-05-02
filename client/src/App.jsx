@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import { redirect } from 'react-router-dom'
 import BlogPostForm from './components/BlogPostForm';
+import Upload from './components/Upload';
 
 
 
@@ -39,6 +40,7 @@ function App() {
         <Route path='/login' element={<Login setAuthenticated={setAuthenticated}/>}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  
+        <Route path='/uploads/new' element={<Upload authenticated={authenticated} isAdmin={isAdmin}/>}/>  
       </Routes>
       
     </Router>

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 const Register = () => {
   const navigate = useNavigate()
@@ -34,9 +36,12 @@ const handleSubmit = async e => {
     console.error('Error during registration', error.response.data)
   }}
   return (
+    <Card sx={{ minWidth: 275 }}>
+      <CardContent>
     <div className="login-container">
       <h1 className='login-logo'>Bitter<span className='sweet'>sweet</span></h1>
       <p className='motto'>A place to share</p>
+      
       <div className="login-header">
         <h2>Create Account</h2>
         <p>Already have an account?<Link style={{ textDecoration: 'none'}} 
@@ -81,6 +86,8 @@ const handleSubmit = async e => {
         </form>
       </div>
     </div>
+    </CardContent>
+    </Card>
   )
 }
 export default Register

@@ -60,3 +60,38 @@
 footer {
     margin-top: 7px;
 }
+
+.dropbox-container {
+    text-align: center;
+}
+
+.dropbox-wrapper {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.dropbox-wrapper textarea {
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.button-wrapper input[type='file'] {
+    margin-right: 10px;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    cursor: pointer;
+}

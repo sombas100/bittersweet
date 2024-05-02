@@ -1,4 +1,6 @@
 .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
     padding: 0.5rem 0;
     position: sticky;
     top: 0;
@@ -54,4 +56,8 @@
     width: 100%;
     transform: translateX(0);
     opacity: 1;
+}
+
+.create-post-btn {
+    margin-right: 10px;
 }
