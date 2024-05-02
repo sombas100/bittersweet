@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const BlogPostForm = () => {
+const BlogPostForm = ({ onClose}) => {
     const [formData, setFormData] = useState({
       title: '',
       content: '',
@@ -22,9 +22,13 @@ const BlogPostForm = () => {
         });
         setFormData({ title: '', content: '' })
         alert('Blog post added successfully!');
+        onClose()
       } catch (error) {
         console.error(error.res.data)
       }
+    }
+    const handleCancel = () => {
+      onClose()
     }
   return (
     <div>
@@ -52,6 +56,7 @@ const BlogPostForm = () => {
           />
         </div>
         <button type='submit'>Add Post</button>
+        <button type='button' onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   )

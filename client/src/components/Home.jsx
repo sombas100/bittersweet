@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import BlogPostForm from './BlogPostForm'
+
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [showNewPostForm, setNewPostForm] = useState(false)
 
   const fetchBlogs = async () => {
     try {
@@ -17,10 +20,22 @@ const Home = () => {
     fetchBlogs
   },[])
 
+  const handleCreatePost = () => {
+    setNewPostForm(true);
+  }
+  
+  const handleCloseForm = () => {
+    setNewPostForm(false);
+  }
+
   
   return (
     <div>
       <h2>Blog Posts</h2>
+      <button onClick={handleCreatePost}>Create Post</button>
+      {showNewPostForm && (
+        <BlogPostForm onClose={handleCloseForm} /> 
+      )}
       <ul>
         {blogs.map(blog => {
           <li key={blog._id}>

@@ -5,6 +5,6 @@ const { getAllBlogs, addBlog } = require('../controllers/blogController')
 
 router.get('/', getAllBlogs)
 
-router.post('/',authMiddleware, addBlog)
+router.post('/uploads/new',authMiddleware, addBlog)
 
 module.exports = router

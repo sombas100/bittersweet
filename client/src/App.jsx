@@ -7,12 +7,14 @@ import Navbar from './components/Navbar';
 import { useState } from 'react';
 import axios from 'axios'
 import { redirect } from 'react-router-dom'
+import BlogPostForm from './components/BlogPostForm';
 
 
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  
   
   const handleLogout = async () => {
     try {
@@ -24,15 +26,21 @@ function App() {
     }
 };
 
+
+
   return (
     <Router>
-      <Navbar authenticated={authenticated} handleLogout={handleLogout}/>
+      <Navbar authenticated={authenticated} 
+      handleLogout={handleLogout}
+      
+      />
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login setAuthenticated={setAuthenticated}/>}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  
       </Routes>
+      
     </Router>
   )
 }
