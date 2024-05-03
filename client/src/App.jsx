@@ -33,7 +33,6 @@ function App() {
     <Router>
       <Navbar authenticated={authenticated} 
       handleLogout={handleLogout}
-      
       />
       <Routes>
         <Route path='/' element={<Home />}/>

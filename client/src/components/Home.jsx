@@ -9,7 +9,7 @@ const Home = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/blogs');
+      const res = await axios.get('http://localhost:3000/api/blog');
       setBlogs(res.data)
     } catch (error) {
       console.error('There was an error fetching the blogs:', error)
@@ -17,7 +17,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchBlogs
+    fetchBlogs()
   },[])
 
   const handleCreatePost = () => {
@@ -37,14 +37,14 @@ const Home = () => {
         <BlogPostForm onClose={handleCloseForm} /> 
       )}
       <ul>
-        {blogs.map(blog => {
-          <li key={blog._id}>
-            <h3>{blog.title}</h3>
-            <p>{blog.content}</p>
-            <p>Author: {blog.author.username}</p>
-          </li>
-        })}
-      </ul>
+  {blogs.map(blog => (
+    <li key={blog._id}>
+      <h3>{blog.title}</h3>
+      <p>{blog.content}</p>
+      <p>Author: {blog.author.username}</p>
+    </li>
+  ))}
+</ul>
     </div>
   )
 }
