@@ -9,6 +9,7 @@ import axios from 'axios'
 import { redirect } from 'react-router-dom'
 import BlogPostForm from './components/BlogPostForm';
 import Upload from './components/Upload';
+import Sidebar from './components/Sidebar';
 
 
 
@@ -32,10 +33,10 @@ function App() {
   return (
     <Router>
       <Navbar authenticated={authenticated} 
-      handleLogout={handleLogout}
-      />
+      handleLogout={handleLogout}/>
+      
       <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path='/' element={<Home authenticated={authenticated} setAuthenticated={setAuthenticated} handleLogout={handleLogout}/>}/>
         <Route path='/login' element={<Login setAuthenticated={setAuthenticated}/>}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import BlogPostForm from './BlogPostForm'
+import Sidebar from './Sidebar';
+import { redirect } from 'react-router-dom'
 
 
-const Home = () => {
+const Home = ({ authenticated, setAuthenticated, }) => {
   const [blogs, setBlogs] = useState([]);
-  const [showNewPostForm, setNewPostForm] = useState(false)
+  
 
   const fetchBlogs = async () => {
     try {
@@ -20,23 +21,26 @@ const Home = () => {
     fetchBlogs()
   },[])
 
-  const handleCreatePost = () => {
-    setNewPostForm(true);
-  }
-  
-  const handleCloseForm = () => {
-    setNewPostForm(false);
-  }
+  const handleLogout = async () => {
+    try {
+        await axios.get('http://localhost:3000/api/auth/logout');
+        setAuthenticated(false)
+        redirect('/login')
+    } catch (error) {
+        console.error('Logut failed:', error)
+    }
+};
 
   
   return (
-    <div>
-      <h2>Blog Posts</h2>
-      <button onClick={handleCreatePost}>Create Post</button>
-      {showNewPostForm && (
-        <BlogPostForm onClose={handleCloseForm} /> 
-      )}
-      <ul>
+    <div className='layout-container'>
+    <div className='post-container'>
+      <div onClick={handleLogout}>
+        {authenticated && <Sidebar />}
+      </div>
+      <h1>Stay up to date</h1>
+      <div className='post-wrapper'>
+      <ul className='post-item'>
   {blogs.map(blog => (
     <li key={blog._id}>
       <h3>{blog.title}</h3>
@@ -45,6 +49,8 @@ const Home = () => {
     </li>
   ))}
 </ul>
+</div>
+    </div>
     </div>
   )
 }
