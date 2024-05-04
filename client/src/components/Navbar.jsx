@@ -18,7 +18,7 @@ const Navbar = ({ authenticated, handleLogout, isAdmin }) => {
                 <li><Link className='menu-item' to='/register'>Register</Link></li>
                 </>
             )}
-            {authenticated && isAdmin && (
+            {authenticated || isAdmin && (
                 <>
                     <li>
                         <LogoutButton handleLogout={handleLogout}/>

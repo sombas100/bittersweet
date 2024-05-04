@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { Button } from '@mui/material'
 
 const Upload = () => {
   const [content, setContent] = useState('');
@@ -31,13 +32,15 @@ const Upload = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     
     try {
-      axios.post('http://localhost:3000/api/blog/uploads/new', { content });
+      const formData = new FormData(e.target);
+      const content = formData.get('content')
+      await axios.post('http://localhost:3000/api/blog/uploads/new', { content });
       console.log('Content submitted', content);
-      setContent('')
+      
     } catch (error) {
       console.error('Error submitting content:', error)
     }
@@ -69,9 +72,9 @@ const Upload = () => {
               onChange={handleFileInputChange}
             />
           </div>
-          <button className='submit-btn' type='submit'>
+          <Button size='small' color='success' variant='contained' className='submit-btn' type='submit'>
             Submit
-          </button>
+          </Button>
         </div>
       </form>
     </div>
