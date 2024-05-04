@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 
 const Upload = () => {
   const [content, setContent] = useState('');
@@ -32,7 +33,14 @@ const Upload = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log('Content submitted', content);
+    
+    try {
+      axios.post('http://localhost:3000/api/blog/uploads/new', { content });
+      console.log('Content submitted', content);
+      setContent('')
+    } catch (error) {
+      console.error('Error submitting content:', error)
+    }
   };
 
   return (

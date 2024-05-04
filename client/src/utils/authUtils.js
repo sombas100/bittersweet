@@ -11,11 +11,11 @@ export const removeAuthToken = (token) => {
 }
 
 export const getUserIdFromToken = () => {
-    const token = sessionStorage.getItem('token'); // Retrieve the token from sessionStorage
+    const token = sessionStorage.getItem('token'); 
 
     if (!token) {
         console.error('Token not found');
-        return null; // Return null if token is not found
+        return null; 
     }
 
     try {

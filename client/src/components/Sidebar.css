@@ -4,6 +4,7 @@
     background-color: #fff;
     color: #fff;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+    
 }
 
 .sidebar a {
@@ -53,6 +54,7 @@
 
 .sidebar-menu ul li Link:hover {
     color: #ff0;
+    max-width: 100%;
 }
 
 .icon-wrapper {
