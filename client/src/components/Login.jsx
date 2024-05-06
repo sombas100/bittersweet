@@ -27,14 +27,16 @@ try {
     password,
   });
   if (res.data.token) {
+    sessionStorage.setItem('token', res.data.token)
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
     setAuthenticated(true)
     navigate('/');
   }
 } catch (error) {
-  console.error(error.message)
+  console.error('Login failed:', error.message)
+}
 }
 
-  }
 
   return (
     <div className="login-container">

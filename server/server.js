@@ -5,6 +5,7 @@ const cors = require('cors')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
+const authMiddleware = require('./middleware/authMiddleware')
 
 
 const app = express()
@@ -32,6 +33,8 @@ app.use(session({
         ttl: 24 * 60 * 60,
     }),
 }));
+
+
 
 const authRouter = require('./routes/auth')
 const blogRouter = require('./routes/blog')

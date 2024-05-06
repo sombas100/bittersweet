@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { Button } from '@mui/material'
+import BlogPostForm from './BlogPostForm';
 
 const Upload = () => {
   const [content, setContent] = useState('');
@@ -32,19 +33,55 @@ const Upload = () => {
     }
   };
 
+  const token = sessionStorage.getItem('token');
+  console.log('Token:', token)
+
+  const axiosInstance = axios.create({
+    baseURL: 'http://localhost:3000',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  axiosInstance.interceptors.request.use(
+    config => {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => {
+      return Promise.reject(error)
+    }
+  )
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     
     try {
       const formData = new FormData(e.target);
       const content = formData.get('content')
-      await axios.post('http://localhost:3000/api/blog/uploads/new', { content });
+      await axiosInstance.post('/uploads/new', { content });
       console.log('Content submitted', content);
       
     } catch (error) {
       console.error('Error submitting content:', error)
     }
   };
+
+  const isLoggedIn = () => {
+    const token = sessionStorage.getItem('token');
+    return !!token; 
+  };
+  
+  
+  if (isLoggedIn()) {
+    
+    console.log('User is logged in');
+  } else {
+    
+    console.log('User is not logged in');
+  }
 
   return (
     <div className='dropbox-container'>
@@ -77,6 +114,7 @@ const Upload = () => {
           </Button>
         </div>
       </form>
+      <BlogPostForm />
     </div>
   );
 };

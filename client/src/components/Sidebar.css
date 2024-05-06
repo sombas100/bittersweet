@@ -41,6 +41,8 @@
     text-decoration: none;
     padding-left: 50px;
     margin-top: 15px;
+    transition: background-color 0.3s;
+    width: 120%;
 }
 
 
@@ -50,6 +52,7 @@
     background-color: #ebebeb;
     border-radius: 5px;
     cursor: pointer;
+    width: 120%;
 }
 
 .sidebar-menu ul li Link:hover {
