@@ -3,6 +3,7 @@ import './Sidebar.css'
 import '../App.css'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 
 const Sidebar = ({ handleLogout, authenticated }) => {
@@ -17,7 +18,7 @@ const Sidebar = ({ handleLogout, authenticated }) => {
         </div>
         <div className='sidebar-menu'>
             <ul>
-                <div className='icon-wrapper'><li><IoIosSettings /><a>Settings</a></li></div>
+                <div className='icon-wrapper'><Link to='/settings'><li><IoIosSettings />Settings</li></Link></div>
                 <div onClick={handleClick} className='icon-wrapper'><li><FaLongArrowAltRight /><a>Logout</a></li></div>
             </ul>
         </div>

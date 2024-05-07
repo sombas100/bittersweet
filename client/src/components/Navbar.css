@@ -37,7 +37,13 @@
     color: #0f0d0d;
     position: relative;
     cursor: pointer;
+    margin-right: 20px;
 }
+
+
+.menu-item:last-child {
+    margin-right: 0; /* Remove margin from the last menu item */
+  }
 
 .menu-item::before {
     content: " ";

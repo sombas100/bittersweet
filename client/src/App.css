@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Adjust as needed */
+    height: 100vh; 
   }
   
   .login-header {
@@ -20,7 +20,7 @@
   }
   
   .login-form {
-    /* Your form styles */
+    
   }
 
   .login-logo {
@@ -119,4 +119,35 @@ label {
 
 .post-item li {
   margin-bottom: 20px;
+}
+
+.about {
+    display: flex;
+    padding-left: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  color: #495057;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }

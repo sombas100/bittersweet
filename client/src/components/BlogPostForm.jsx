@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const BlogPostForm = ({ onClose }) => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -24,7 +27,8 @@ const BlogPostForm = ({ onClose }) => {
       setFormData({ title: '', content: '' });
       setError('');
       alert('Blog post added successfully!');
-      onClose();
+      navigate('/')
+
     } catch (error) {
       console.error(error.response.data);
       setError('Failed to add blog post. Please try again.');
@@ -58,8 +62,8 @@ const BlogPostForm = ({ onClose }) => {
             required
           />
         </div>
-        <button type='submit'>Add Post</button>
-        <button type='button' onClick={onClose}>Cancel</button>
+        <Button size="small" color="success" variant="contained" type='submit'>Add Post</Button>
+        <Button size="small" color="error" variant="contained" type='button' onClick={() => {navigate('/')}}>Cancel</Button>
       </form>
     </div>
   );

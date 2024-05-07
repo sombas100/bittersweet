@@ -10,6 +10,9 @@ import { redirect } from 'react-router-dom'
 import BlogPostForm from './components/BlogPostForm';
 import Upload from './components/Upload';
 import Sidebar from './components/Sidebar';
+import About from './components/About';
+import Settings from './components/Settings';
+import Footer from './components/Footer';
 
 
 
@@ -39,10 +42,12 @@ function App() {
         <Route path='/' element={<Home authenticated={authenticated} setAuthenticated={setAuthenticated} handleLogout={handleLogout}/>}/>
         <Route path='/login' element={<Login setAuthenticated={setAuthenticated}/>}/>
         <Route path='/register' element={<Register />}/>
+        <Route path='/about' element={<About />}/>  
+        <Route path='/settings' element={<Settings />}/>  
         <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  
         <Route path='/uploads/new' element={<Upload authenticated={authenticated} isAdmin={isAdmin}/>}/>  
       </Routes>
-      
+      <Footer />
     </Router>
   )
 }
