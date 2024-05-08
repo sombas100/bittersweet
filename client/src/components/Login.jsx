@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
+import OAuth from './OAuth'
 
-const Login = ({ setAuthenticated }) => {
+const Login = ({ authenticated, setAuthenticated }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
@@ -73,6 +74,7 @@ try {
             />
           </div>
           <Button type='submit' size='small' variant="contained">Log In</Button>
+          <OAuth setAuthenticated={setAuthenticated}/>
           <footer><span className='copyright'>© bittersweet 2024</span></footer>
         </form>
       </div>

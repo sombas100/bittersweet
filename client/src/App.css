@@ -151,3 +151,13 @@ label {
 .footer a:hover {
   text-decoration: underline;
 }
+
+.google {
+  padding-left: 10px;
+}
+
+.google-icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}

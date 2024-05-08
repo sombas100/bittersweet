@@ -96,7 +96,43 @@ const logoutUser = async (req, res) => {
     })
 }
 
+const google = async (req, res) => {
+    try {
+        const { user } = req.body;
+
+        // Check if user data is present and contains email
+        if (!user || !user.email) {
+            return res.status(400).json({ message: 'Invalid user data' });
+        }
+
+        // Check if user with the provided email already exists
+        let existingUser = await User.findOne({ email: user.email });
+
+        // If user doesn't exist, create a new user
+        if (!existingUser) {
+            existingUser = new User({
+                username: user.displayName,
+                email: user.email,
+                password: 'defaultPw'
+            });
+            await existingUser.save();
+        }
+
+        // Generate JWT token for the user
+        const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
+
+        // Send the token in a cookie and as a response JSON
+        res.cookie('access_token', token, { httpOnly: true })
+            .status(200)
+            .json({ token });
+
+    } catch (error) {
+        console.error('Error authenticating user:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 module.exports = {
-    registerUser, loginUser, logoutUser
+    registerUser, loginUser, logoutUser, google
 }
 

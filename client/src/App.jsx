@@ -13,6 +13,7 @@ import Sidebar from './components/Sidebar';
 import About from './components/About';
 import Settings from './components/Settings';
 import Footer from './components/Footer';
+import OAuth from './components/OAuth';
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path='/settings' element={<Settings />}/>  
         <Route path='/dashboard' element={<Dashboard authenticated={authenticated} isAdmin={isAdmin}/>}/>  
         <Route path='/uploads/new' element={<Upload authenticated={authenticated} isAdmin={isAdmin}/>}/>  
+        <Route path="/oauth" render={() => <OAuth setAuthenticated={setAuthenticated} />} />
       </Routes>
       <Footer />
     </Router>
