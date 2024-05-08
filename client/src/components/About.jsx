@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className='about'>Founded in 2024, Bittersweets is a dynamic and vibrant platform that aims to provide users with a space to express themselves freely and creatively. Our journey began with a simple yet powerful vision: to create a community where individuals can share their thoughts, ideas, stories, and experiences with the world.
 
-    At Bittersweets, we believe in the power of storytelling. Whether it's sharing personal anecdotes, discussing passions, or exploring diverse topics, our platform is designed to empower users to unleash their creativity and connect with like-minded individuals from across the globe.
+    At Bittersweet, we believe in the power of storytelling. Whether it's sharing personal anecdotes, discussing passions, or exploring diverse topics, our platform is designed to empower users to unleash their creativity and connect with like-minded individuals from across the globe.
     
     Since our inception, we have been dedicated to fostering a supportive and inclusive environment where every voice is heard and respected. Our mission is to inspire, inform, and entertain our audience through engaging content that sparks conversation and fosters meaningful connections.
     

@@ -8,7 +8,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 const OAuth = ({ setAuthenticated }) => {
-    console.log(setAuthenticated)
     const navigate = useNavigate();
 
     const handleGoogleClick = async () => {

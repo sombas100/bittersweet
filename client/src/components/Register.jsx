@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import OAuth from './OAuth';
 
-const Register = () => {
+const Register = ({ setAuthenticated }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
@@ -82,6 +83,7 @@ const handleSubmit = async e => {
             />
           </div>
           <Button type='submit' size='small' variant="contained">Register</Button>
+          <OAuth setAuthenticated={setAuthenticated} />
           <footer><span className='copyright'>© bittersweet 2024</span></footer>
         </form>
       </div>
